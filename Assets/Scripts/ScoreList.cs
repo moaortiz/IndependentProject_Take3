@@ -19,12 +19,12 @@ public class ScoreList : MonoBehaviour
 {
     public List<Score> scores = new List<Score>();
     public string fileName;
-    private GameObject input;
+    public GameObject input;
 
-    //public GameObject finalPanel;
-    //public GameObject scorePanel;
+    public GameObject finalPanel;
+    public GameObject scorePanel;
 
-    public GameObject timesPanel;
+    //public GameObject timesPanel;
 
     public GameObject entryPrefab;
     // Start is called before the first frame update
@@ -60,6 +60,7 @@ public class ScoreList : MonoBehaviour
 
     public void NewEntry()
     {
+        Debug.Log("Enters New Entry method");
         //Get the name input from input field
         string name = input.GetComponent<TMP_InputField>().text;
         //Get GameData componenet
@@ -77,19 +78,19 @@ public class ScoreList : MonoBehaviour
             children[1].GetComponent<TextMeshProUGUI>().text = score.name;
             children[2].GetComponent<TextMeshProUGUI>().text = score.time.ToString("F2");
 
-            temp.transform.SetParent(/*scorePanel*/ timesPanel.transform);
+            temp.transform.SetParent(scorePanel.transform);
             RectTransform rtrans = temp.GetComponent<RectTransform>();
             rtrans.anchorMin = new Vector2(0.5f, 0.5f);
             rtrans.anchorMax = new Vector2(0.5f, 0.5f);
             rtrans.pivot = new Vector2(0.5f, 0.5f);
             rtrans.localPosition = new Vector3(0, offset, 0);
-            offset -= 35;
+            offset -= 60;
         }
 
-        //finalPanel.SetActive(false);
-        //scorePanel.SetActive(true);
+        finalPanel.SetActive(false);
+        scorePanel.SetActive(true);
 
-        timesPanel.SetActive(true);
+        //timesPanel.SetActive(true);
     }
 
     private void OnDestroy()

@@ -56,18 +56,17 @@ public class GameManager : MonoBehaviour
 
     public void LoadMenu()
     {
-        if(pages == 4)
+        if(pages == 4 && SceneManager.GetActiveScene().name == "Level_One_Scene")
         {
             Debug.Log("enters if statement");
             goToNextLevel.gameObject.SetActive(true);
             nextLevel.gameObject.SetActive(true);
             mainMenu.gameObject.SetActive(true);
             book.SetActive(true);
-            //bookAn.BookAnimation();
-            //submitNamePanel.SetActive(true);
-
+        }
+        else if (pages == 4 && SceneManager.GetActiveScene().name == "Level_Two_Scene")
+        {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex +1);
-
         }
         else
         {

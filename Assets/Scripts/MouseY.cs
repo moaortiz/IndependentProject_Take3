@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class MouseY : MonoBehaviour
 {
-    private PlayerMovement gameActive;
-    private bool active;
     public float verticalSpeed = 2.0F;
     
     void Update()

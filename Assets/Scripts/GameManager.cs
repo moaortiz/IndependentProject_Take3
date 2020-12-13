@@ -30,6 +30,7 @@ public class GameManager : MonoBehaviour
     public Button pausedExit;
     public Button pausedResume;
 
+    public GameObject submitNamePanel;
     public void Start()
     {
         startTime = Time.time;
@@ -63,6 +64,9 @@ public class GameManager : MonoBehaviour
             mainMenu.gameObject.SetActive(true);
             book.SetActive(true);
             //bookAn.BookAnimation();
+            //submitNamePanel.SetActive(true);
+
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex +1);
 
         }
         else
@@ -82,9 +86,15 @@ public class GameManager : MonoBehaviour
 
     public void MainMenuScene()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
-
-    }
+        if(SceneManager.GetActiveScene().name == "Level_One_Scene")
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
+        }
+        else if(SceneManager.GetActiveScene().name == "Level_Two_Scene")
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 2);
+        }
+     }
 
     public void RedoLevel()
     {
@@ -99,6 +109,7 @@ public class GameManager : MonoBehaviour
         pausedMenu.gameObject.SetActive(true);
         pausedExit.gameObject.SetActive(true);
         pausedResume.gameObject.SetActive(true);
+        Time.timeScale = 0.0f;
     }
 
     public void GameUnpaused()
@@ -108,6 +119,8 @@ public class GameManager : MonoBehaviour
         pausedMenu.gameObject.SetActive(false);
         pausedExit.gameObject.SetActive(false);
         pausedResume.gameObject.SetActive(false);
+
+        Time.timeScale = 1.0f;
     }
 
     public void EndGame()
